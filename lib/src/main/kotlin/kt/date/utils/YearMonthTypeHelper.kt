@@ -1,14 +1,25 @@
 package kt.date.utils
 
 import kt.date.extensions.toYearMonth
-import kt.date.model.InstantOutputConfig
-import kt.date.model.StringInputConfig
-import kt.date.model.StringOutputConfig
+import kt.date.model.Configuration
 import java.time.Instant
+import java.time.LocalDate
 import java.time.YearMonth
 
 object YearMonthTypeHelper {
-    fun parseFromString(value: String, inputConfig: StringInputConfig, outputConfig: StringOutputConfig): YearMonth = value.toYearMonth(inputConfig.pattern)
+    fun parseFromString(
+        value: String,
+        configuration: Configuration<String>
+    ): YearMonth = value.toYearMonth(configuration.pattern.formatter)
 
-    fun parseFromInstant(value: Instant, outputConfig: InstantOutputConfig): YearMonth = value.toYearMonth(outputConfig.timezone)
+    fun parseFromInstant(
+        value: Instant,
+        configuration: Configuration<Instant>
+    ): YearMonth = value.toYearMonth(configuration.timezone)
+
+    fun parseFromLocalDate(
+        value: LocalDate,
+        configuration: Configuration<LocalDate>
+    ): YearMonth = value.toYearMonth()
+
 }

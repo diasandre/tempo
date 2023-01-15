@@ -1,23 +1,37 @@
 package kt.date
 
-import kt.date.model.StringInputConfig
-import kt.date.model.StringOutputConfig
-import kt.date.model.enums.STRING_OUTPUT_TYPE
-import kt.date.utils.LOCAL_DATE_PATTERN
-import java.time.LocalDate
+import kt.date.model.Configuration
+import kt.date.model.InputConfig
+import kt.date.model.OutputConfig
+import kt.date.model.Pattern
+import kt.date.model.enums.INPUT_TYPE
+import kt.date.utils.ParserChooser
 
-class StringDateHelper<RESULT>(private val value: String, val inputConfig: StringInputConfig = StringInputConfig(), val outputConfig: StringOutputConfig = StringOutputConfig()) {
+class StringDateHelper<RESULT>(
+    private val value: String,
+    val inputConfig: InputConfig = InputConfig(),
+    val outputConfig: OutputConfig = OutputConfig()
+) : DateHandler<RESULT> {
 
-    private fun checkConfigs(): StringDateHelper<RESULT> {
-        requireNotNull(outputConfig.type) { "output type is required" }
-        requireNotNull(inputConfig.pattern) { "input pattern is required" }
+    override fun validateAndBuildConfiguration(): Configuration<String> {
+        val type = requireNotNull(outputConfig.type) { "output type is required" }
 
-        return this
+        val configuration = Configuration(
+            pattern = Pattern(value, inputConfig.pattern),
+            timezone = outputConfig.timezone,
+            type = type
+        )
+
+        if (configuration.pattern.type == INPUT_TYPE.DATE || configuration.pattern.type == INPUT_TYPE.YEAR_MONTH) {
+            requireNotNull(configuration.pattern.formatter) { "input pattern is required" }
+        }
+
+        return configuration
     }
 
-    fun run(): RESULT = checkConfigs().let {
-        val type: STRING_OUTPUT_TYPE = requireNotNull(outputConfig.type)
-        val result = type.parser(value, inputConfig, outputConfig)
+    override fun run(): RESULT = validateAndBuildConfiguration().let { configuration ->
+        val parser: (String, Configuration<String>) -> Any = ParserChooser.chooseFromString(configuration)
+        parser(value, configuration)
     } as RESULT
 }
 
@@ -26,23 +40,10 @@ fun <RESULT> String.handle(block: StringDateHelper<RESULT>.() -> Unit): RESULT =
         block(it)
     }.run()
 
-fun <RESULT> StringDateHelper<RESULT>.input(block: StringInputConfig.() -> Unit) {
+fun <RESULT> StringDateHelper<RESULT>.input(block: InputConfig.() -> Unit) {
     inputConfig.apply(block)
 }
 
-fun <RESULT> StringDateHelper<RESULT>.output(block: StringOutputConfig.() -> Unit) {
+fun <RESULT> StringDateHelper<RESULT>.output(block: OutputConfig.() -> Unit) {
     outputConfig.apply(block)
-}
-
-fun main() {
-    val date: LocalDate = "2022-01-01".handle {
-        input {
-            pattern = LOCAL_DATE_PATTERN
-        }
-        output {
-            type = STRING_OUTPUT_TYPE.LOCAL_DATE
-        }
-    }
-
-    println(date)
 }
