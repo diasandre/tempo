@@ -4,7 +4,11 @@ import kt.date.model.Configuration
 import kt.date.model.InputConfig
 import kt.date.model.OutputConfig
 import kt.date.model.Pattern
-import kt.date.model.enums.INPUT_TYPE
+import kt.date.model.enums.INPUT_TYPE.DATE
+import kt.date.model.enums.INPUT_TYPE.DATE_TIME
+import kt.date.model.enums.INPUT_TYPE.YEAR_MONTH
+import kt.date.utils.ErrorMessages.REQUIRED_INPUT_PATTERN
+import kt.date.utils.ErrorMessages.REQUIRED_OUTPUT_TYPE
 import kt.date.utils.ParserChooser
 
 class StringDateHelper<RESULT>(
@@ -13,17 +17,19 @@ class StringDateHelper<RESULT>(
     val outputConfig: OutputConfig = OutputConfig()
 ) : DateHandler<RESULT> {
 
+    private val requiredPatternTypes = listOf(DATE, DATE_TIME, YEAR_MONTH)
+
     override fun validateAndBuildConfiguration(): Configuration<String> {
-        val type = requireNotNull(outputConfig.type) { "output type is required" }
+        val type = requireNotNull(outputConfig.type) { REQUIRED_OUTPUT_TYPE }
 
         val configuration = Configuration(
-            pattern = Pattern(value, inputConfig.pattern),
+            pattern = Pattern(value, inputConfig),
             timezone = outputConfig.timezone,
             type = type
         )
 
-        if (configuration.pattern.type == INPUT_TYPE.DATE || configuration.pattern.type == INPUT_TYPE.YEAR_MONTH) {
-            requireNotNull(configuration.pattern.formatter) { "input pattern is required" }
+        if (requiredPatternTypes.contains(configuration.pattern.type)) {
+            requireNotNull(configuration.pattern.formatter) { REQUIRED_INPUT_PATTERN }
         }
 
         return configuration
