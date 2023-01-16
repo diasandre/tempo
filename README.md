@@ -45,20 +45,6 @@ val actual: YearMonth = "2022/01/01".handle {
         }
 ```
 
-## Customizing the Input Pattern
-When using the handle function with a String input, you can provide a custom pattern for parsing the input. The default pattern is "yyyy-MM-dd", but you can specify any valid [SimpleDateFormat](https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/text/SimpleDateFormat.html) pattern.
-
-```
-val actual: YearMonth = "2022/01/01".handle {
-            input {
-                pattern = "yyyy/MM/dd"
-            }
-            output {
-                type = OUTPUT_TYPE.YEAR_MONTH
-            }
-        }
-```
-
 ## Updating the Output Value
 The update configuration allows you to specify updates to be applied to the output value. The following updates are currently supported:
 
