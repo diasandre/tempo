@@ -14,13 +14,13 @@ object InstantTypeHelper {
         value: String,
         configuration: Configuration<String>
     ): Instant = when (configuration.pattern.type) {
-        INPUT_TYPE.DATE_TIME -> value.toLocalDateTime(configuration).toInstant(configuration.timezone.zoneOffset)
-        else -> value.toLocalDate(configuration).toInstant(configuration.timezone.zoneOffset)
+        INPUT_TYPE.DATE_TIME -> value.toLocalDateTime(configuration).handleUpdateIfNecessary(configuration).toInstant(configuration.timezone.zoneOffset)
+        else -> value.toLocalDate(configuration).handleUpdateIfNecessary(configuration).toInstant(configuration.timezone.zoneOffset)
 
     }
 
     fun parseFromLocalDate(
         value: LocalDate,
         configuration: Configuration<LocalDate>
-    ): Instant = value.toInstant(configuration.timezone.zoneOffset)
+    ): Instant = value.handleUpdateIfNecessary(configuration).toInstant(configuration.timezone.zoneOffset)
 }

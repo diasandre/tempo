@@ -2,7 +2,7 @@ package kt.date.utils
 
 import kt.date.model.Configuration
 import kt.date.model.enums.OUTPUT_TYPE
-import kt.date.utils.ErrorMessages.OUTPUT_IS_EQUAL_TO_INPUT
+import kt.date.utils.constants.ErrorMessages.OUTPUT_IS_EQUAL_TO_INPUT
 import java.time.Instant
 import java.time.LocalDate
 

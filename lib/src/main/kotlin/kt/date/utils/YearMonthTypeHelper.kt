@@ -10,16 +10,16 @@ object YearMonthTypeHelper {
     fun parseFromString(
         value: String,
         configuration: Configuration<String>
-    ): YearMonth = value.toYearMonth(configuration.pattern.formatter)
+    ): YearMonth = value.toYearMonth(configuration.pattern.formatter).handleUpdateIfNecessary(configuration)
 
     fun parseFromInstant(
         value: Instant,
         configuration: Configuration<Instant>
-    ): YearMonth = value.toYearMonth(configuration.timezone)
+    ): YearMonth = value.toYearMonth(configuration.timezone).handleUpdateIfNecessary(configuration)
 
     fun parseFromLocalDate(
         value: LocalDate,
         configuration: Configuration<LocalDate>
-    ): YearMonth = value.toYearMonth()
+    ): YearMonth = value.handleUpdateIfNecessary(configuration).toYearMonth()
 
 }

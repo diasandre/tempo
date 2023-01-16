@@ -1,4 +1,4 @@
-package kt.date.utils
+package kt.date.utils.constants
 
 object ErrorMessages {
     const val REQUIRED_OUTPUT_TYPE = "output type is required"

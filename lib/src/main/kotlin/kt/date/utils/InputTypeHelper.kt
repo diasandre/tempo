@@ -1,7 +1,8 @@
 package kt.date.utils
 
 import kt.date.model.enums.INPUT_TYPE
-import kt.date.utils.ErrorMessages.NOT_ACCEPTABLE_INPUT_PATTERN
+import kt.date.model.enums.INPUT_TYPE.*
+import kt.date.utils.constants.ErrorMessages.NOT_ACCEPTABLE_INPUT_PATTERN
 
 object InputTypeHelper {
     fun <VALUE> get(value: VALUE): INPUT_TYPE {
@@ -13,15 +14,15 @@ object InputTypeHelper {
             val isEpochMilliPattern = "\\d{13}".toRegex().containsMatchIn(value)
 
             return when {
-                isLocalDateTimePattern -> INPUT_TYPE.DATE_TIME
-                isLocalDatePattern -> INPUT_TYPE.DATE
-                isYearMonthPattern -> INPUT_TYPE.YEAR_MONTH
-                isEpochMilliPattern -> INPUT_TYPE.MILLIS
-                isEpochSecondPattern -> INPUT_TYPE.SECONDS
+                isLocalDateTimePattern -> DATE_TIME
+                isLocalDatePattern -> DATE
+                isYearMonthPattern -> YEAR_MONTH
+                isEpochMilliPattern -> MILLIS
+                isEpochSecondPattern -> SECONDS
                 else -> error(NOT_ACCEPTABLE_INPUT_PATTERN)
             }
         }
 
-        return INPUT_TYPE.DATE
+        return DATE
     }
 }

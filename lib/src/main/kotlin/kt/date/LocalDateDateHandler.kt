@@ -4,8 +4,9 @@ import kt.date.model.Configuration
 import kt.date.model.InputConfig
 import kt.date.model.OutputConfig
 import kt.date.model.Pattern
-import kt.date.utils.ErrorMessages.REQUIRED_OUTPUT_TYPE
 import kt.date.utils.ParserChooser
+import kt.date.utils.UpdateConfigHelper
+import kt.date.utils.constants.ErrorMessages.REQUIRED_OUTPUT_TYPE
 import java.time.LocalDate
 
 class LocalDateDateHandler<RESULT>(
@@ -20,6 +21,7 @@ class LocalDateDateHandler<RESULT>(
         return Configuration(
             pattern = Pattern(value, inputConfig),
             timezone = outputConfig.timezone,
+            updates = UpdateConfigHelper.build(outputConfig.update),
             type = type
         )
     }

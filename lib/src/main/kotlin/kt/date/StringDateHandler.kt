@@ -3,13 +3,15 @@ package kt.date
 import kt.date.model.Configuration
 import kt.date.model.InputConfig
 import kt.date.model.OutputConfig
+import kt.date.model.OutputUpdateConfig
 import kt.date.model.Pattern
 import kt.date.model.enums.INPUT_TYPE.DATE
 import kt.date.model.enums.INPUT_TYPE.DATE_TIME
 import kt.date.model.enums.INPUT_TYPE.YEAR_MONTH
-import kt.date.utils.ErrorMessages.REQUIRED_INPUT_PATTERN
-import kt.date.utils.ErrorMessages.REQUIRED_OUTPUT_TYPE
 import kt.date.utils.ParserChooser
+import kt.date.utils.UpdateConfigHelper
+import kt.date.utils.constants.ErrorMessages.REQUIRED_INPUT_PATTERN
+import kt.date.utils.constants.ErrorMessages.REQUIRED_OUTPUT_TYPE
 
 class StringDateHelper<RESULT>(
     private val value: String,
@@ -25,6 +27,7 @@ class StringDateHelper<RESULT>(
         val configuration = Configuration(
             pattern = Pattern(value, inputConfig),
             timezone = outputConfig.timezone,
+            updates = UpdateConfigHelper.build(outputConfig.update),
             type = type
         )
 
@@ -52,4 +55,8 @@ fun <RESULT> StringDateHelper<RESULT>.input(block: InputConfig.() -> Unit) {
 
 fun <RESULT> StringDateHelper<RESULT>.output(block: OutputConfig.() -> Unit) {
     outputConfig.apply(block)
+}
+
+fun OutputConfig.update(block: OutputUpdateConfig.() -> Unit) {
+    update = OutputUpdateConfig().apply(block)
 }

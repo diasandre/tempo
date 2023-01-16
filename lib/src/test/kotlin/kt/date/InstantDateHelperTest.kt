@@ -1,8 +1,8 @@
 package kt.date
 
 import kt.date.model.enums.OUTPUT_TYPE
-import kt.date.utils.ErrorMessages.OUTPUT_IS_EQUAL_TO_INPUT
-import kt.date.utils.ErrorMessages.REQUIRED_OUTPUT_TYPE
+import kt.date.utils.constants.ErrorMessages.OUTPUT_IS_EQUAL_TO_INPUT
+import kt.date.utils.constants.ErrorMessages.REQUIRED_OUTPUT_TYPE
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

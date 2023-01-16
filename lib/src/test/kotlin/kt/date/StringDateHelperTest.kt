@@ -1,9 +1,13 @@
 package kt.date
 
+import kt.date.model.enums.OPERATION_TYPE
 import kt.date.model.enums.OUTPUT_TYPE
-import kt.date.utils.ErrorMessages.FAILED_TO_CONVERT_FOR_PATTERN
+import kt.date.model.update.Day
+import kt.date.model.update.Month
+import kt.date.model.update.Year
 import kt.date.utils.LOCAL_DATE_PATTERN
 import kt.date.utils.YEAR_MONTH_PATTERN
+import kt.date.utils.constants.ErrorMessages.FAILED_TO_CONVERT_FOR_PATTERN
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -22,10 +26,15 @@ class StringDateHelperTest {
             }
             output {
                 type = OUTPUT_TYPE.YEAR_MONTH
+                update {
+                    day = Day(1)
+                    month = Month(2, OPERATION_TYPE.PLUS)
+                    year = Year(2020)
+                }
             }
         }
 
-        assertThat(actual).isEqualTo(YearMonth.of(2022, 1))
+        assertThat(actual).isEqualTo(YearMonth.of(2020, 3))
     }
 
     @Test
