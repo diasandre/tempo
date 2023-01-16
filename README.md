@@ -86,3 +86,5 @@ val actual: YearMonth = "2022-01-01".handle {
 
 ## Contributing
 If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request. We welcome any contributions to make this project more useful for the Kotlin community.
+
+The project logo was created by DALL-E.
