@@ -1,5 +1,5 @@
 # tempo
-[![codebeat badge](https://codebeat.co/badges/157ea095-be52-4504-b28d-a46124630d33)](https://codebeat.co/projects/github-com-diasandre-kt-date-extensions-main)
+[![codebeat badge](https://codebeat.co/badges/62e72b08-44a4-4291-a763-4e5bdc345195)](https://codebeat.co/projects/github-com-diasandre-tempo-main)
 
 This Kotlin project provides a convenient function for converting between different types, including String, LocalDate, and Instant.
 
