@@ -5,9 +5,9 @@ import kt.date.model.enums.OUTPUT_TYPE
 import kt.date.model.update.Day
 import kt.date.model.update.Month
 import kt.date.model.update.Year
-import kt.date.utils.LOCAL_DATE_PATTERN
-import kt.date.utils.YEAR_MONTH_PATTERN
 import kt.date.utils.constants.ErrorMessages.FAILED_TO_CONVERT_FOR_PATTERN
+import kt.date.utils.constants.LOCAL_DATE_PATTERN
+import kt.date.utils.constants.YEAR_MONTH_PATTERN
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

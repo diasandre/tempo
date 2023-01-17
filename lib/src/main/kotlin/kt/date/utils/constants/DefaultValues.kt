@@ -1,4 +1,4 @@
-package kt.date.utils
+package kt.date.utils.constants
 
 import java.time.format.DateTimeFormatter
 
