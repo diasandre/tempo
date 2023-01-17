@@ -37,7 +37,7 @@ When using the handle function with a String input, you can provide a custom pat
 ```
 val actual: YearMonth = "2022/01/01".handle {
             input {
-                pattern = "yyyy/MM/dd"
+                pattern = DateTimeFormatter.ofPattern("yyyy/MM/dd")
             }
             output {
                 type = OUTPUT_TYPE.YEAR_MONTH
