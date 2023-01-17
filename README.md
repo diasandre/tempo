@@ -3,7 +3,7 @@
 # tempo
 [![codebeat badge](https://codebeat.co/badges/62e72b08-44a4-4291-a763-4e5bdc345195)](https://codebeat.co/projects/github-com-diasandre-tempo-main)
 
-This Kotlin project provides a convenient function for converting between different types, including String, LocalDate, and Instant.
+This Kotlin project provides a convenient function for converting dates between different types, including String, LocalDate, and Instant.
 
 ## Usage
 To use the extension function, simply call handle on your input value (String, LocalDate and Instant) and provide a configuration object with the desired input and output configurations. For example, to convert a String in the format "yyyy-MM-dd" to a YearMonth object, you can use the following code:
