@@ -1,9 +1,25 @@
-![Logo](https://github.com/diasandre/tempo/blob/main/Logo.png "by DALL-E")
+<h1 align="center">
+  <a href="https://github.com/diasandre/tempo" title="tempo documentation">
+    <img alt="tempo logo" src="https://github.com/diasandre/tempo/blob/main/Logo.png" width="200px" height="200px" />
+  </a>
+  <br />
+  Tempo
+</h1>
 
-# tempo
-[![codebeat badge](https://codebeat.co/badges/62e72b08-44a4-4291-a763-4e5bdc345195)](https://codebeat.co/projects/github-com-diasandre-tempo-main)
+<p align="center">
+  This Kotlin project provides a convenient function for converting dates between different types, including String, LocalDate, and Instant.
+</p>
 
-This Kotlin project provides a convenient function for converting dates between different types, including String, LocalDate, and Instant.
+<div align="center">
+  <a href="https://www.paypal.com/donate/?business=3BM464VRSLULY&no_recurring=0&currency_code=USD">
+    <img alt="Donate" src="https://img.shields.io/badge/Donate-PayPal-blue.svg" />
+  </a>
+    <a href="https://codebeat.co/projects/github-com-diasandre-tempo-main">
+    <img alt="codebeat" src="https://codebeat.co/badges/62e72b08-44a4-4291-a763-4e5bdc345195" />
+  </a>
+ </div>
+
+<br />
 
 ## Installation
 To use this library, you need to add the JitPack repository to your project's build file.
