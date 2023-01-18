@@ -1,4 +1,4 @@
-![Logo](https://github.com/diasandre/tempo/blob/main/LogoDalle.png "by DALL-E")
+![Logo](https://github.com/diasandre/tempo/blob/main/Logo.png "by DALL-E")
 
 # tempo
 [![codebeat badge](https://codebeat.co/badges/62e72b08-44a4-4291-a763-4e5bdc345195)](https://codebeat.co/projects/github-com-diasandre-tempo-main)
